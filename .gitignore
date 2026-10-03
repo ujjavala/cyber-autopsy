@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+node_modules/
+studio-cyber-autopsy/node_modules/
+venv/
+.env
+.env.*
+!.env.example
+*.egg-info/
+.pytest_cache/
+results/*/raw/
+node_modules/
+web/dist/
+.DS_Store
+
+# Generated Kaggle task and run exports (source is under kaggle/build/).
+/*.task.json
+/*.run.json
+
+# Native agent transcript captures can contain retrieved incident content.
+agent-session-native-*.jsonl

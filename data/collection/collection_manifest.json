@@ -1,0 +1,290 @@
+{
+  "pipeline_version": "0.1.0",
+  "query_sets": [
+    {
+      "version": "2026-10-01.v1",
+      "created_at": "2026-10-01T00:00:00Z",
+      "queries": [
+        "AI agent cyber attack incident report autonomous",
+        "AI-orchestrated cyber espionage campaign disruption",
+        "LLM agent misuse cybercrime extortion report",
+        "DFIR intrusion timeline ransomware threat actor report",
+        "CISA cybersecurity advisory threat actor TTPs",
+        "cyber agent benchmark CTF capability evaluation"
+      ],
+      "notes": "Initial vertical-slice discovery set. Manual fetches via agent web tooling; results and decisions recorded below."
+    },
+    {
+      "version": "2026-10-01.v2",
+      "created_at": "2026-10-01T10:50:00Z",
+      "queries": [
+        "Google Threat Intelligence Group report adversarial misuse generative AI threat actors Gemini",
+        "CISA AA24-241A official PDF",
+        "CISA AA23-320A official PDF"
+      ],
+      "notes": "Follow-up audit: recovered official CISA PDFs after original landing pages redirected; identified Google GTIG as a non-Anthropic landscape source."
+    },
+    {
+      "version": "2026-10-01.v3",
+      "created_at": "2026-10-01T10:56:00Z",
+      "queries": [
+        "Google GTIG 2026 agent-enabled mass credential harvesting campaign under six hours",
+        "Google Threat Intelligence Mandiant incident response AI agent campaign credentials"
+      ],
+      "notes": "Identified and retrieved an incident-level Google GTIG/Mandiant report suitable for a fourth, single-source draft case."
+    },
+    {
+      "version": "2026-10-02.v4",
+      "created_at": "2026-10-02T00:00:00Z",
+      "queries": [
+        "Australia Medicare Statistics Reporting Service AI agent unauthorised access September 2026 official transcript",
+        "Hong Kong government deepfake video conference HK$200 million fraud legislative council 2024",
+        "BumbleBee Akira ransomware SEO poisoning forensic report 2026"
+      ],
+      "notes": "Added three bounded incident sources to diversify the case set: an AI-agent portal incident, an official account of deepfake-enabled transfer fraud, and a conventional ransomware intrusion. New gold graphs are drafts and have not been independently reviewed or scored."
+    },
+    {
+      "version": "2026-10-02.v5",
+      "created_at": "2026-10-02T00:00:00Z",
+      "queries": [
+        "Microsoft Midnight Blizzard January March 2024 disclosure corporate email source code access",
+        "Change Healthcare Andrew Witty Senate testimony February 12 Citrix MFA data exfiltration",
+        "Mandiant UNC5537 Snowflake customer instance data theft extortion 2024",
+        "Mandiant 2024 2025 incident response campaign ransomware SaaS intrusion case study",
+        "UNODC AI deepfake scam center case studies Southeast Asia 2024 2025"
+      ],
+      "notes": "Added three new incident records and four benchmark cases: staged Microsoft disclosures, Change Healthcare, and the campaign-level UNC5537 Snowflake report. Added a research inventory of additional candidates, boundaries, and exclusions. New graphs are draft and not independently reviewed or scored."
+    }
+  ],
+  "records": [
+    {
+      "url": "https://www.anthropic.com/news/disrupting-AI-espionage",
+      "discovered_via": "AI-orchestrated cyber espionage campaign disruption",
+      "retrieved_at": "2026-10-01T10:48:16Z",
+      "content_hash": "f83d07c42fc160e3f22c08efe4701462593f2bc690777f7760a5741d318c21c1",
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Primary vendor report of GTG-1002: first reported largely AI-orchestrated espionage campaign. Action-level claims incl. documented AI failures (hallucinated credentials/results), guardrail bypass, human decision points. Core AI-actor case.",
+      "source_id": "SRC-001",
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://assets.anthropic.com/m/ec212e6566a0d47/original/Disrupting-the-first-reported-AI-orchestrated-cyber-espionage-campaign.pdf",
+      "discovered_via": "https://www.anthropic.com/news/disrupting-AI-espionage",
+      "retrieved_at": "2026-10-01T10:48:16Z",
+      "content_hash": "f35a7b90d06e60c6fc14c99c12945f3d13026861dee97ebb2ed5ac5e1d8bebf5",
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Full technical PDF for SRC-001; companion document, same source cluster.",
+      "source_id": "SRC-002",
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://www.anthropic.com/news/detecting-countering-misuse-aug-2025",
+      "discovered_via": "LLM agent misuse cybercrime extortion report",
+      "retrieved_at": "2026-10-01T10:48:17Z",
+      "content_hash": "10af70dcd2275d0f6676b26f19fc71287a435801307198c24fa9632e9b07c94d",
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Vendor misuse report: 'vibe hacking' data-extortion operation (hybrid human+AI actor, >=17 victim orgs). Documents AI making tactical+strategic decisions with humans in the loop. Autonomy-spectrum comparator to GTG-1002. NOTE: ransom-note figures in post are simulated recreations by Anthropic -> excluded from evidence or marked source_claim.",
+      "source_id": "SRC-003",
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://thedfirreport.com/2025/06/30/hide-your-rdp-password-spray-leads-to-ransomhub-deployment/",
+      "discovered_via": "DFIR intrusion timeline ransomware threat actor report",
+      "retrieved_at": "2026-10-01T10:48:17Z",
+      "content_hash": "a150d9e2530ddbdb6340d2cca96268475ab8f55e071488694aaadd3bb69393a9",
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Action-level human-attacker intrusion with timestamps, failed attempts (password spray), tooling, exfiltration volume, and 118h TTR. Primary human-actor reconstruction case.",
+      "source_id": "SRC-004",
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://cybench.github.io/",
+      "discovered_via": "cyber agent benchmark CTF capability evaluation",
+      "retrieved_at": "2026-10-01T10:48:17Z",
+      "content_hash": "1e02e52f99c950f867c2f604e0681ea77fb835d78c89361e482e9f0993e94c5b",
+      "access_status": "open",
+      "archive_url": null,
+      "included": false,
+      "decision_reason": "Benchmark landscape reference (capability testing, not incident data). Cited in LANDSCAPE_AND_DATA_AUDIT.md; not an incident source.",
+      "source_id": null,
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-241a",
+      "discovered_via": "CISA cybersecurity advisory threat actor TTPs",
+      "retrieved_at": "2026-10-01T10:47:41Z",
+      "archive_url": "https://www.cisa.gov/sites/default/files/2024-08/aa24-241a-iran-based-cyber-actors-enabling-ransomware-attacks-on-us-organizations_0.pdf",
+      "content_hash": "8158ec331c7190b72e72cb30a76266af91613a08c0256f0e3e5afaeb9a13c372",
+      "access_status": "open",
+      "archive_url": null,
+      "included": false,
+      "decision_reason": "Original landing page redirects. Exact advisory PDF recovered from the official CISA-hosted file path and archived locally; excluded because it was not selected as an action-level benchmark case.",
+      "source_id": null,
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-320a",
+      "discovered_via": "CISA cybersecurity advisory threat actor TTPs",
+      "retrieved_at": "2026-10-01T10:47:42Z",
+      "content_hash": "896169adc12391372fe2b69d0f83321f21a5baa7753f8c155122ff37e3d946ae",
+      "access_status": "open",
+      "archive_url": "https://www.cisa.gov/sites/default/files/2023-11/aa23-320a_scattered_spider_0.pdf",
+      "included": false,
+      "decision_reason": "Scattered Spider advisory. Original landing page redirects; exact advisory PDF recovered from the official CISA-hosted file path and archived locally. The alternate URL is a current official PDF, not a Wayback snapshot. Excluded because it was not selected as an action-level benchmark case.",
+      "source_id": null,
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/adversarial-misuse-generative-ai",
+      "discovered_via": "Google Threat Intelligence Group report adversarial misuse generative AI threat actors Gemini",
+      "retrieved_at": "2026-10-01T10:50:07Z",
+      "content_hash": "2c0380589640af72d4d69763c2e3c9576320666807806b42d56204b86af0076f",
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Non-Anthropic primary-source landscape reference documenting threat actors' malicious Gemini use. Retained as a landscape source, not as an incident record, because it aggregates activity across actors and lacks one bounded action-level intrusion narrative.",
+      "source_id": "SRC-005",
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/from-prompting-to-autonomy-the-evolution-of-adversarial-ai",
+      "discovered_via": "Google GTIG 2026 agent-enabled mass credential harvesting campaign under six hours",
+      "retrieved_at": "2026-10-01T10:56:00Z",
+      "content_hash": "5b11368a0e094eb6530bc52e66db6b0921735e29092a2490bba282bec5f59c13",
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Primary Google GTIG/Mandiant report of an incident-level AI-enabled credential-harvesting campaign. Used for draft incident INC-004; all claims remain vendor-reported and need independent gold review.",
+      "source_id": "SRC-006",
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://www.pm.gov.au/media/press-conference-new-york",
+      "discovered_via": "Australia Medicare Statistics Reporting Service AI agent unauthorised access September 2026 official transcript",
+      "retrieved_at": "2026-10-02T00:00:00Z",
+      "content_hash": "a669f0b81be90c877f863fe1c83594f04931d9eae7933f2b2f7557a049ceadaf",
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Primary Australian Government account of the incident, agent activity, preliminary impact assessment, and ongoing investigation. Paired with SRC-008 from the same briefing date, not treated as independent corroboration.",
+      "source_id": "SRC-007",
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://www.minister.defence.gov.au/transcripts/2026-09-24/press-conference-sydney",
+      "discovered_via": "Australia Medicare Statistics Reporting Service AI agent unauthorised access September 2026 official transcript",
+      "retrieved_at": "2026-10-02T00:00:00Z",
+      "content_hash": "a0c82d842258caf1d82d5c1e1fc1c184fc8dd956be109379dc6c9ed22f3760b7",
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Primary government briefing adds notification and portal-scope details. Same source cluster and date as SRC-007; not independent corroboration.",
+      "source_id": "SRC-008",
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://www.info.gov.hk/gia/general/202406/26/P2024062600192p.htm",
+      "discovered_via": "Hong Kong government deepfake video conference HK$200 million fraud legislative council 2024",
+      "retrieved_at": "2026-10-02T00:00:00Z",
+      "content_hash": "b33af822f3731741054654d5b9b1d54fd3b6c5358ac525ad98c9d05f4f74c874",
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Official Legislative Council reply gives a bounded reported fraud sequence and loss. Company remains unnamed; police explanation of public-source audio/video is retained as a qualified source claim.",
+      "source_id": "SRC-009",
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://thedfirreport.com/2026/06/29/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira-3/",
+      "discovered_via": "BumbleBee Akira ransomware SEO poisoning forensic report 2026",
+      "retrieved_at": "2026-10-02T00:00:00Z",
+      "content_hash": "50e90759242de5e4cd2714c6a85793866db32dd7e5aae622cc1412dc4e5302d5",
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Detailed forensic incident report with an action sequence from SEO poisoning to Akira deployment. The report covers two intrusions; only its primary BumbleBee case is included, excluding Swisscom-specific activity.",
+      "source_id": "SRC-010",
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://www.microsoft.com/en-us/msrc/blog/2024/01/microsoft-actions-following-attack-by-nation-state-actor-midnight-blizzard",
+      "discovered_via": "Microsoft Midnight Blizzard January March 2024 disclosure corporate email source code access",
+      "retrieved_at": "2026-10-02T00:00:00Z",
+      "content_hash": "38ee13428451c244915a6036cb3c2103540dc23f46e37b2d3673056ecb4ddf3d",
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Initial victim disclosure anchors CASE-017 and the early knowledge state of CASE-018. Exact HTML bytes are archived locally. The later source-code finding is kept in a separate update rather than retroactively rewriting this snapshot.",
+      "source_id": "SRC-011",
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://www.microsoft.com/en-us/security/blog/2024/01/25/midnight-blizzard-guidance-for-responders-on-nation-state-attack/",
+      "discovered_via": "Microsoft Midnight Blizzard January March 2024 disclosure corporate email source code access",
+      "retrieved_at": "2026-10-02T00:00:00Z",
+      "content_hash": "04608c1cf3969feeb4ed81ba699e0d07d0503a18425f71418f63c7789f5b4e9a",
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Technical victim-side follow-up for the later disclosure snapshot; same source cluster, not independent corroboration.",
+      "source_id": "SRC-012",
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://www.microsoft.com/en-us/msrc/blog/2024/03/update-on-microsoft-actions-following-attack-by-nation-state-actor-midnight-blizzard",
+      "discovered_via": "Microsoft Midnight Blizzard January March 2024 disclosure corporate email source code access",
+      "retrieved_at": "2026-10-02T00:00:00Z",
+      "content_hash": "a5bd7c9d112c221972a417c0c4bf2d4a84d13dd24e043bbfe6b19cac3cc4f548",
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Later victim disclosure adds access or attempted access to source-code repositories and internal systems using exfiltrated email. Exact HTML bytes are archived locally.",
+      "source_id": "SRC-013",
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://www.finance.senate.gov/imo/media/doc/0501_witty_testimony.pdf",
+      "discovered_via": "Change Healthcare Andrew Witty Senate testimony February 12 Citrix MFA data exfiltration",
+      "retrieved_at": "2026-10-02T00:00:00Z",
+      "content_hash": null,
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Public Senate testimony gives a later victim account of access path, sequence, and sampled data impact. Exact source bytes could not be archived because direct retrieval was denied; no content hash is claimed.",
+      "source_id": "SRC-014",
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/731766/000073176624000045/unh-20240221.htm",
+      "discovered_via": "Change Healthcare Andrew Witty Senate testimony February 12 Citrix MFA data exfiltration",
+      "retrieved_at": "2026-10-02T00:00:00Z",
+      "content_hash": null,
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Initial regulatory disclosure captures the response and unknown scope at the first reporting stage. Direct archival retrieval was denied; no content hash is claimed.",
+      "source_id": "SRC-015",
+      "parser_version": "0.1.0"
+    },
+    {
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/unc5537-snowflake-data-theft-extortion",
+      "discovered_via": "Mandiant UNC5537 Snowflake customer instance data theft extortion 2024",
+      "retrieved_at": "2026-10-02T00:00:00Z",
+      "content_hash": "e9ca609eb7aa2fca9f835da8edc1c051c19f09069c0e4ee788d71dddaafcc7f6",
+      "access_status": "open",
+      "archive_url": null,
+      "included": true,
+      "decision_reason": "Mandiant campaign report retained as a campaign-level case, not a single victim timeline. Exact HTML bytes are archived locally.",
+      "source_id": "SRC-016",
+      "parser_version": "0.1.0"
+    }
+  ]
+}

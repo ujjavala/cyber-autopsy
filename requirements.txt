@@ -1,0 +1,7 @@
+pydantic>=2.5
+networkx>=3.1
+pandas>=2.0
+numpy>=1.24
+kaggle-benchmarks>=0.6
+kaggle>=1.7
+pytest>=8.0
