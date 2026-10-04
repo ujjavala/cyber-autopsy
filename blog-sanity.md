@@ -443,7 +443,9 @@ Codex loaded the Knowledge Base outline and called `knowledge_base_search` and
 `knowledge_base_read`. The session reached the real Sanity content and was
 stopped by the Codex account usage limit before it could produce a final
 narrative, so it should be described as a tool-call transcript, not as a
-completed answer. It has not been uploaded to DEV yet.
+completed answer. A secret-free curated copy is included in
+`agent-session-path-one.md` for upload to DEV; it should not be presented as a
+completed final answer.
 
 The browser UI uses the same investigation context and exposes the workflow in
 a more approachable way:

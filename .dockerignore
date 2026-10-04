@@ -1,0 +1,10 @@
+.env
+.git
+.venv
+node_modules
+studio-cyber-autopsy
+tests
+*.task.json
+*.run.json
+README.md
+blog-*.md

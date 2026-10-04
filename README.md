@@ -34,6 +34,22 @@ Open [http://localhost:3000](http://localhost:3000). The UI reads structured
 incidents, events, relationships, claims, and evidence from Sanity. If port
 3000 is already occupied, use `PORT=3001 npm run dev` and open port 3001.
 
+### Deploy the web UI
+
+The repository includes a container and Fly.io configuration. After installing
+the Fly CLI and authenticating with your own account, create or select an app,
+set the server-side Sanity secrets, and deploy normally:
+
+```sh
+fly auth login
+fly apps create cyber-autopsy-ujjavala
+fly secrets set SANITY_PROJECT_ID=41l9o4xn SANITY_DATASET=production SANITY_API_TOKEN="..."
+fly deploy
+```
+
+The app exposes `/healthz` for the platform health check. Never commit the
+Sanity token or put it in browser code.
+
 In a second terminal, start the Sanity Studio when you need to inspect or edit
 documents:
 

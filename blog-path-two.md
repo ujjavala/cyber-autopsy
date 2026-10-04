@@ -491,7 +491,9 @@ connect to MCP. It is the read-only retrieval path used for the Path One
 integration and exposes the Knowledge Base through `initial_context`,
 `knowledge_base_search`, and `knowledge_base_read`. The endpoint URL is kept
 in the repository's environment configuration rather than hard-coded into the
-application, and no token is included in this post.
+application, and no token is included in this post. A secret-free curated
+native-session record is available at
+`agent-session-path-one.md`.
 
 The browser UI uses the same investigation context and exposes the workflow in
 a more approachable way:

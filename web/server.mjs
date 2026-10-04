@@ -10,6 +10,7 @@ const mime = {'.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=ut
 const server = http.createServer(async (request, response) => {
   try {
     const url = new URL(request.url, 'http://localhost')
+    if (url.pathname === '/healthz') return sendJson(response, {ok: true})
     if (url.pathname === '/api/cases') return sendJson(response, await context.listCases())
     if (url.pathname === '/api/investigate') {
       const caseId = url.searchParams.get('caseId') || 'CASE-001'
@@ -31,4 +32,5 @@ function sendJson(response, body, status = 200) {
 }
 
 const port = Number(process.env.PORT || 3000)
-server.listen(port, '127.0.0.1', () => console.log(`Cyber Autopsy UI: http://localhost:${port}`))
+const host = process.env.HOST || '0.0.0.0'
+server.listen(port, host, () => console.log(`Cyber Autopsy UI: http://${host}:${port}`))
