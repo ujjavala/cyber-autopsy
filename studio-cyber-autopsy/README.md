@@ -12,3 +12,25 @@ Now you can do the following things:
 
 The root README documents the import command and the optional Knowledge Base /
 MCP dashboard setup.
+# Review automation
+
+The Studio includes a Sanity-native review workflow. `Review queue` in the
+structure shows unresolved `reviewTask` documents. The `review-queue-on-content-change`
+Function creates a task when evidence, events, relationships, or claims lose a
+source/evidence link. It does not change verdicts or publish conclusions.
+
+Build the Function archive locally with `npm run functions:build`. Preview the
+Blueprint with `npm run blueprints:plan`, then deploy only after checking the
+target Stack and resource diff. Deploying the Blueprint creates a narrowly scoped
+project robot token for the Function; review that permission in Sanity before
+deployment.
+
+Agent Actions are available as a draft-only reviewer assist:
+
+```sh
+SANITY_SCHEMA_ID=<schema-id> SANITY_API_TOKEN=<write-token> \
+  node scripts/draft-review-agent-action.mjs <review-task-id>
+```
+
+The command writes only a draft `reviewerNotes` field. It never publishes a
+review task, changes severity/status, or decides a cyber attribution claim.

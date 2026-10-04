@@ -165,4 +165,47 @@ export const investigationCase = defineType({
   preview: {select: {title: 'caseId', subtitle: 'mode'}},
 })
 
-export const schemaTypes = [incident, source, evidence, event, relationship, claim, investigationCase]
+export const reviewTask = defineType({
+  name: 'reviewTask',
+  title: 'Review Task',
+  type: 'document',
+  icon: DocumentTextIcon,
+  fields: [
+    defineField({name: 'title', type: 'string', validation: (rule) => rule.required()}),
+    defineField({name: 'kind', type: 'string', options: {list: [
+      {title: 'Missing source', value: 'missing-source'},
+      {title: 'Missing evidence', value: 'missing-evidence'},
+      {title: 'Broken reference', value: 'broken-reference'},
+      {title: 'Temporal review', value: 'temporal-review'},
+      {title: 'Conflict review', value: 'conflict-review'},
+    ]}, validation: (rule) => rule.required()}),
+    defineField({name: 'severity', type: 'string', options: {list: [
+      {title: 'Critical', value: 'critical'},
+      {title: 'Warning', value: 'warning'},
+      {title: 'Info', value: 'info'},
+    ]}, initialValue: 'warning', validation: (rule) => rule.required()}),
+    defineField({name: 'status', type: 'string', options: {list: [
+      {title: 'Open', value: 'open'},
+      {title: 'In review', value: 'in-review'},
+      {title: 'Resolved', value: 'resolved'},
+      {title: 'Dismissed', value: 'dismissed'},
+    ]}, initialValue: 'open', validation: (rule) => rule.required()}),
+    defineField({name: 'summary', type: 'text', rows: 4, validation: (rule) => rule.required()}),
+    defineField({name: 'suggestedAction', title: 'Suggested action', type: 'text', rows: 3}),
+    defineField({name: 'document', title: 'Document under review', type: 'reference', to: [
+      {type: 'incident'}, {type: 'source'}, {type: 'evidence'}, {type: 'event'},
+      {type: 'relationship'}, {type: 'claim'}, {type: 'investigationCase'},
+    ]}),
+    defineField({name: 'relatedDocuments', type: 'array', of: [defineArrayMember({type: 'reference', to: [
+      {type: 'incident'}, {type: 'source'}, {type: 'evidence'}, {type: 'event'},
+      {type: 'relationship'}, {type: 'claim'}, {type: 'investigationCase'},
+    ]})]}),
+    defineField({name: 'fingerprint', type: 'string', readOnly: true, validation: (rule) => rule.required()}),
+    defineField({name: 'detectedBy', type: 'string', options: {list: ['Sanity Function', 'Manual audit', 'Agent Action']}, initialValue: 'Sanity Function'}),
+    defineField({name: 'detectedAt', type: 'datetime', readOnly: true}),
+    defineField({name: 'reviewerNotes', type: 'text', rows: 4}),
+  ],
+  preview: {select: {title: 'title', subtitle: 'severity', status: 'status'}},
+})
+
+export const schemaTypes = [incident, source, evidence, event, relationship, claim, investigationCase, reviewTask]

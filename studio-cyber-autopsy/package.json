@@ -6,6 +6,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "sanity build",
+    "functions:build": "sanity functions build --json",
+    "blueprints:plan": "sanity blueprints plan --json",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
     "dev": "sanity dev",
@@ -15,6 +17,8 @@
     "sanity"
   ],
   "dependencies": {
+    "@sanity/blueprints": "^0.28.0",
+    "@sanity/functions": "^1.8.1",
     "@sanity/icons": "^5.2.3",
     "@sanity/vision": "^6.17.0",
     "react": "^19.2.4",
