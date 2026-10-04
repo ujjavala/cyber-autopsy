@@ -167,9 +167,9 @@ Sanity Context Knowledge Base was also created and checked through its
 read-only MCP tools; that hosted integration is the Path One capability, while
 this post focuses on the strange forensic product and its build process.
 
-## How I Used Sanity
+### Sanity integration in the build
 
-### How Sanity helped
+#### How Sanity helped
 
 Sanity gave the project a durable, queryable content layer for the benchmark's
 investigation graph. Before the integration, the dataset was primarily a group
@@ -203,9 +203,9 @@ layer acts as the reasoning boundary. The agent is not asked to remember an
 incident or invent a timeline; it queries structured content and returns a
 calibrated reconstruction.
 
-### Sanity features used
+#### Sanity features used
 
-#### 1. Structured document schemas
+##### 1. Structured document schemas
 
 Instead of storing one large incident document, I modeled the investigation as
 separate document types. This matches the way a forensic analyst works: an
@@ -219,7 +219,7 @@ boundary. For example, an `event` has a status and confidence, while an
 references. A `relationship` has a source event, target event, relation type,
 and supporting evidence.
 
-#### 2. References and graph-shaped content
+##### 2. References and graph-shaped content
 
 The most important Sanity feature here is the reference field. Evidence does
 not copy an event's text, and a relationship does not copy both event records.
@@ -246,7 +246,7 @@ This turns Sanity into a navigable investigation graph. The agent can traverse
 becomes a reconstruction with visible provenance instead of an unsupported
 paragraph.
 
-#### 3. Field validation and controlled statuses
+##### 3. Field validation and controlled statuses
 
 The Studio schema validates required identifiers and references, constrains
 confidence to the range `0..1`, and uses controlled options for evidence and
@@ -261,7 +261,7 @@ separate established facts from uncertain or failed steps. This prevents a
 missing observation from silently becoming a confirmed event and makes
 calibrated uncertainty part of the content model.
 
-#### 4. GROQ projections and dereferencing
+##### 4. GROQ projections and dereferencing
 
 The context layer uses GROQ projections to request only the fields required by
 an investigation. The `->` operator dereferences related documents so one
@@ -286,7 +286,7 @@ This is useful for security analysis because the response remains structured.
 The agent can filter on timestamps, statuses, evidence IDs, and relationship
 types instead of trying to recover those distinctions from prose.
 
-#### 5. Parameterized, scoped queries
+##### 5. Parameterized, scoped queries
 
 Queries are parameterized with `caseId` and `incidentRef`. The selected case
 defines the visible evidence set, and the context derives a set of allowed
@@ -300,7 +300,7 @@ day-one question can also apply an additional D1 filter before the result is
 rendered. The model cannot accidentally cite a later ransomware event as if it
 were known on day one.
 
-#### 6. Sanity Content API
+##### 6. Sanity Content API
 
 The Node context uses Sanity's Content API with the project ID, dataset, GROQ
 query, and optional server-side token. The token is loaded from `.env` on the
@@ -324,7 +324,7 @@ The same API boundary also makes failures explicit. A missing case produces a
 clear error, while an empty evidence set is handled as an empty investigation
 scope rather than causing a client-side `length` exception.
 
-#### 7. Sanity Studio, Structure Tool, and Vision
+##### 7. Sanity Studio, Structure Tool, and Vision
 
 The project includes a standalone Sanity Studio configured for the same project
 and `production` dataset. The Structure Tool provides the editing workspace
@@ -336,7 +336,7 @@ That is useful when developing an investigation query: I can verify a case
 projection, inspect references, and test a cutoff query against the real
 dataset before wiring it into the MCP context.
 
-#### 8. Transactional mutations and repeatable import
+##### 8. Transactional mutations and repeatable import
 
 The importer uses Sanity mutations in batches rather than hand-editing hundreds
 of documents. It creates or replaces the normalized documents in dependency
@@ -355,7 +355,7 @@ This gives the benchmark a reproducible migration path while keeping the live
 knowledge base editable in Studio. It also means the dataset can be rebuilt if
 the schema gains another forensic field later.
 
-#### 9. MCP as the agent boundary
+##### 9. MCP as the agent boundary
 
 Sanity stores and retrieves the content; the MCP server exposes investigation
 capabilities to an agent host. The server provides `list_investigation_cases`
@@ -368,7 +368,7 @@ case scoping and graph filtering. The MCP layer is responsible for making those
 grounded operations available to an agent. The agent can therefore reason over
 retrieved evidence without receiving unrestricted access to the whole dataset.
 
-### Content model
+#### Content model
 
 Sanity stores seven document types:
 
@@ -400,7 +400,7 @@ IDs from the benchmark remain explicit and stable: `INC-001`, `E-001`, `N01`,
 and `CASE-004`. This makes the imported content easy to inspect in Studio and
 keeps evidence references understandable in the investigation output.
 
-### Importing the knowledge base
+#### Importing the knowledge base
 
 The JSONL files under `data/` remain the reproducible source of truth. The
 importer maps them into Sanity documents:
@@ -428,7 +428,7 @@ Cyber Autopsy documents plus 12 existing project documents. A curated
 150-document source from this dataset is currently indexed in the hosted
 Context Knowledge Base.
 
-### Context queries and agent behavior
+#### Context queries and agent behavior
 
 `agent/sanity-context.mjs` uses scoped GROQ queries. It does not download the
 entire dataset for every question:
@@ -514,7 +514,7 @@ CASE-011/012: What does the evidence establish regardless of actor framing?
 CASE-001: Are there conflicting claims?
 ```
 
-## Local Verification
+### Local Verification
 
 The current build has been checked with:
 

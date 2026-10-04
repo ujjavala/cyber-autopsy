@@ -466,7 +466,7 @@ CASE-011/012: What does the evidence establish regardless of actor framing?
 CASE-001: Are there conflicting claims?
 ```
 
-## Local Verification
+### Local Verification
 
 The current build has been checked with:
 
