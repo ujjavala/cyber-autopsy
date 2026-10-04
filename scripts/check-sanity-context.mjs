@@ -3,18 +3,20 @@ import {loadEnv} from '../agent/env.mjs'
 loadEnv()
 
 const endpoint = process.env.SANITY_CONTEXT_MCP_URL
-const token = process.env.SANITY_CONTEXT_TOKEN || process.env.SANITY_API_TOKEN
+const token = process.env.SANITY_CONTEXT_TOKEN || process.env.SANITY_ORG_TOKEN || process.env.SANITY_API_TOKEN
 
 if (!endpoint) {
   console.error('Missing SANITY_CONTEXT_MCP_URL. Create a Sanity Context MCP endpoint first.')
   process.exit(1)
 }
 if (!token) {
-  console.error('Missing SANITY_CONTEXT_TOKEN or SANITY_API_TOKEN.')
+  console.error('Missing SANITY_CONTEXT_TOKEN, SANITY_ORG_TOKEN, or SANITY_API_TOKEN.')
   process.exit(1)
 }
 if (!process.env.SANITY_CONTEXT_TOKEN) {
-  console.warn('Using SANITY_API_TOKEN for the MCP check; a Context Viewer token may be required by the hosted endpoint.')
+  console.warn(process.env.SANITY_ORG_TOKEN
+    ? 'Using SANITY_ORG_TOKEN for the hosted MCP check.'
+    : 'Using SANITY_API_TOKEN for the MCP check; a Context Viewer token may be required by the hosted endpoint.')
 }
 
 async function callMcp(message, sessionId = '') {
