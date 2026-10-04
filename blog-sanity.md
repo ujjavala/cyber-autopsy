@@ -57,7 +57,13 @@ reasoning boundaries around each conclusion.
 
 ## Demo
 
-Run the project locally:
+The deployed demo is available at [https://cyber-autopsy.vercel.app](https://cyber-autopsy.vercel.app).
+It serves the forensic UI and the Sanity-backed `/api/cases` and
+`/api/investigate` routes. The Vercel project currently has deployment
+protection enabled; the URL becomes judge-accessible after that account-level
+setting is disabled.
+
+Run the project locally when you want to inspect or modify it:
 
 ```sh
 npm run dev
@@ -78,6 +84,8 @@ The repository contains the Python benchmark, Sanity Studio, importer, MCP
 server, local UI, tests, and documentation.
 
 Repository: https://github.com/ujjavala/cyber-autopsy
+
+Deployment: https://cyber-autopsy.vercel.app
 
 The most relevant implementation files are:
 

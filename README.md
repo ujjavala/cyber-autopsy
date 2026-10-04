@@ -36,19 +36,23 @@ incidents, events, relationships, claims, and evidence from Sanity. If port
 
 ### Deploy the web UI
 
-The repository includes a container and Fly.io configuration. After installing
-the Fly CLI and authenticating with your own account, create or select an app,
-set the server-side Sanity secrets, and deploy normally:
+The repository includes Vercel serverless routing and a container fallback. For
+Vercel, authenticate with your own account, set the server-side Sanity secrets,
+and deploy from the repository root:
 
 ```sh
-fly auth login
-fly apps create cyber-autopsy-ujjavala
-fly secrets set SANITY_PROJECT_ID=41l9o4xn SANITY_DATASET=production SANITY_API_TOKEN="..."
-fly deploy
+npx vercel login
+npx vercel link
+npx vercel env add SANITY_PROJECT_ID production
+npx vercel env add SANITY_DATASET production
+npx vercel env add SANITY_API_TOKEN production
+npx vercel --prod
 ```
 
-The app exposes `/healthz` for the platform health check. Never commit the
-Sanity token or put it in browser code.
+The Vercel deployment serves the static forensic UI and `/api/cases` plus
+`/api/investigate` as serverless functions. The container and Fly files remain
+available as an alternative. Never commit the Sanity token or put it in
+browser code.
 
 In a second terminal, start the Sanity Studio when you need to inspect or edit
 documents:
