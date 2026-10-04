@@ -449,9 +449,28 @@ Codex loaded the Knowledge Base outline and called `knowledge_base_search` and
 `knowledge_base_read`. The session reached the real Sanity content and was
 stopped by the Codex account usage limit before it could produce a final
 narrative, so it should be described as a tool-call transcript, not as a
-completed answer. A secret-free curated copy is included in
-`agent-session-path-one.md` for upload to DEV; it should not be presented as a
-completed final answer.
+completed answer. It is shown below as a curated tool-call transcript rather
+than a completed final answer. It contains no token or private environment
+value.
+
+```text
+Prompt:
+Use the configured sanity-context MCP server. Stay read-only. Query the hosted
+Knowledge Base first, then answer: How did the attacker move from initial access
+to ransomware deployment in CASE-001? Use only retrieved content, preserve
+uncertainty, and mention provenance boundaries.
+
+MCP calls:
+1. initial_context -> loaded the hosted Knowledge Base outline.
+2. knowledge_base_search -> returned RansomHub and related ransomware records.
+3. knowledge_base_read -> read dataset-backed entries with provenance IDs,
+   including cyber-autopsy-claim-inc-001-n14.
+
+Agent note:
+Search results should not be stitched into claims the Knowledge Base does not
+state. The native session reached real Sanity content, then Codex hit its usage
+limit before producing the final narrative answer.
+```
 
 The browser UI uses the same investigation context and exposes the workflow in
 a more approachable way:

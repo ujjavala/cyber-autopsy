@@ -497,9 +497,19 @@ connect to MCP. It is the read-only retrieval path used for the Path One
 integration and exposes the Knowledge Base through `initial_context`,
 `knowledge_base_search`, and `knowledge_base_read`. The endpoint URL is kept
 in the repository's environment configuration rather than hard-coded into the
-application, and no token is included in this post. A secret-free curated
-native-session record is available at
-`agent-session-path-one.md`.
+application, and no token is included in this post. The curated native-session
+record is included inline below for transparency.
+
+```text
+Prompt: Query the hosted Sanity Context Knowledge Base read-only and explain
+how CASE-001 moved from initial access to ransomware deployment.
+
+MCP calls: initial_context -> knowledge_base_search -> knowledge_base_read.
+The search returned RansomHub-related records and the read returned
+dataset-backed provenance identifiers. The agent preserved the boundary that
+retrieved content must not be stitched into unsupported claims. Codex reached
+the real content but hit its usage limit before the final narrative answer.
+```
 
 The browser UI uses the same investigation context and exposes the workflow in
 a more approachable way:
