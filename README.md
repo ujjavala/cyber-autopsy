@@ -360,15 +360,30 @@ working directory. The server requires the same `SANITY_PROJECT_ID`,
 
 ### Knowledge Base status
 
-The structured Sanity dataset and MCP-compatible context are implemented. A
-Sanity Knowledge Base or hosted dashboard connection is not provisioned by this
-repository because that is an account-level/dashboard action. To finish that
-optional challenge setup, create a Knowledge Base named **Cyber Autopsy Knowledge
-Base** in the existing Sanity project, select `production`, and include the
-`incident`, `source`, `evidence`, `event`, `relationship`, `claim`, and
-`investigationCase` document types. Point its MCP/context connection at the
-local `agent:mcp` command for development, or deploy that command as the project
-runtime. Verify the connection with the example questions below.
+The hosted Sanity Context setup is provisioned for this project. The Knowledge
+Base is `kbZHPSeMHnZt`, and its read-only MCP endpoint is configured through
+`SANITY_CONTEXT_MCP_URL`. The app uses two complementary Sanity endpoints:
+
+- The Sanity Content API is the structured graph path used by `/api/cases` and
+  `/api/investigate`. It runs scoped GROQ queries for the selected case, so
+  events, relationships, claims, and evidence stay inside the case boundary.
+- The hosted Context MCP endpoint is the agent-facing Knowledge Base path. The
+  local and deployed UI check it through `/api/context-status` and show whether
+  it is reachable, without sending the token to the browser or replacing the
+  deterministic investigation query.
+
+For local development, set the endpoint and an organization-scoped Context
+Viewer token in `.env`:
+
+```sh
+SANITY_CONTEXT_MCP_URL=https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/cyber-autopsy-context
+SANITY_ORG_TOKEN=your_context_viewer_token
+```
+
+For Vercel, add the same variables in the project’s Production environment
+settings. Use `SANITY_CONTEXT_TOKEN` instead if that is the name of the token
+you created. Never expose either token as a `NEXT_PUBLIC_` or browser variable.
+Run `npm run sanity:context:check` to verify the hosted endpoint directly.
 
 ### Example investigation questions
 

@@ -1,4 +1,5 @@
 import {context} from '../agent/sanity-context.mjs'
+import {getHostedContextStatus} from '../agent/hosted-context.mjs'
 
 export default async function handler(request, response) {
   response.setHeader('Access-Control-Allow-Origin', '*')
@@ -13,6 +14,9 @@ export default async function handler(request, response) {
       const caseId = url.searchParams.get('caseId') || 'CASE-001'
       const question = url.searchParams.get('question') || 'What happened in this incident?'
       return response.status(200).json(await context.investigate(caseId, question))
+    }
+    if (url.pathname === '/api/context-status') {
+      return response.status(200).json(await getHostedContextStatus())
     }
     return response.status(404).json({error: 'Not found'})
   } catch (error) {

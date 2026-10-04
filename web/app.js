@@ -3,6 +3,28 @@ const esc = (value) => String(value ?? '').replace(/[&<>'"]/g, (character) => ({
 const statusIcon = {confirmed: '✓', inferred: '~', attempted: '→', failed: '✕', unknown: '?'}
 let caseCatalog = []
 
+async function loadContextStatus() {
+  const indicator = $('#sanity-status')
+  if (!indicator) return
+  try {
+    const response = await fetch('/api/context-status')
+    const status = await response.json()
+    if (status.reachable) {
+      indicator.textContent = `CONTENT API LIVE  •  CONTEXT MCP LIVE / ${status.tools.length} TOOLS`
+      indicator.classList.add('connected')
+    } else if (status.configured) {
+      indicator.textContent = 'CONTENT API LIVE  •  CONTEXT MCP OFFLINE'
+      indicator.classList.add('degraded')
+    } else {
+      indicator.textContent = 'CONTENT API LIVE  •  CONTEXT MCP NOT CONFIGURED'
+      indicator.classList.add('degraded')
+    }
+  } catch {
+    indicator.textContent = 'CONTENT API LIVE  •  CONTEXT MCP UNAVAILABLE'
+    indicator.classList.add('degraded')
+  }
+}
+
 async function loadCases() {
   const response = await fetch('/api/cases')
   if (!response.ok) throw new Error('Could not load cases from Sanity')
@@ -61,3 +83,4 @@ $('#case-select').addEventListener('change', updateMeta)
 $('#investigate').addEventListener('click', investigate)
 document.querySelectorAll('.quick-question').forEach((button) => button.addEventListener('click', () => { $('#question').value = button.dataset.question; investigate() }))
 loadCases().catch((error) => { $('#error').textContent = error.message; $('#error').hidden = false })
+loadContextStatus()

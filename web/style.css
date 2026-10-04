@@ -6,6 +6,9 @@ body { margin: 0; background-color: #080d0e; background-image: linear-gradient(r
 .masthead::after { background: var(--accent); content: ''; height: 2px; left: 0; position: absolute; bottom: -1px; width: 84px; }
 .lab-topline { align-items: center; color: var(--muted); display: flex; font-size: 10px; justify-content: space-between; letter-spacing: .1em; margin-bottom: 32px; text-transform: uppercase; }
 .lab-topline b { color: var(--accent); padding: 0 7px; }
+.lab-topline #sanity-status { color: var(--accent); transition: color .2s, opacity .2s; }
+.lab-topline #sanity-status.degraded { color: var(--amber); }
+.lab-topline #sanity-status.connected { text-shadow: 0 0 12px rgba(117, 224, 194, .3); }
 .live-dot { background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 4px rgba(117, 224, 194, .1), 0 0 14px rgba(117, 224, 194, .75); display: inline-block; height: 7px; margin-right: 8px; width: 7px; }
 .eyebrow { align-items: center; color: var(--accent); display: flex; font-size: 11px; gap: 9px; letter-spacing: .14em; }
 .eyebrow::before { background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 4px rgba(117, 224, 194, .1); content: ''; height: 7px; width: 7px; }
