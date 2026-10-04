@@ -430,9 +430,9 @@ npm run sanity:seed
 ```
 
 The current Sanity production dataset contains 457 documents: 445 imported
-Cyber Autopsy documents plus 12 existing project documents. A curated
-150-document source from this dataset is currently indexed in the hosted
-Context Knowledge Base.
+Cyber Autopsy documents plus 12 existing project documents. The hosted
+Context Knowledge Base is built and ready with 46 focused sources covering
+incidents, investigation cases, and source records.
 
 #### Context queries and agent behavior
 

@@ -359,8 +359,10 @@ npm run sanity:seed
 
 The current Sanity production dataset contains 457 documents: 445 imported
 Cyber Autopsy documents plus 12 existing project documents. The hosted Context
-Knowledge Base currently indexes a curated 150-document source from that
-dataset; the remaining corpus is available for a later reviewed expansion.
+Knowledge Base is built and ready with 46 sources: ten incident records,
+twenty investigation cases, and sixteen source records. This focused import
+keeps the agent's forensic corpus navigable while leaving the full dataset
+available for future reviewed expansion.
 
 ### Context queries and agent behavior
 
@@ -411,10 +413,12 @@ The project details identify the Sanity project and dataset used by the
 Knowledge Base. Server-side tokens stay in `.env`, are ignored by Git, and are
 never published in this post.
 
-The Knowledge Base build completed and is in Sanity's `review` state with two
-Dashboard review issues. The content is queryable through the hosted endpoint;
-the review issues should be checked in the Dashboard before treating the build
-as fully approved. The hosted MCP advertises `initial_context`,
+The Knowledge Base build completed all stages and is queryable through the
+hosted endpoint. Sanity currently reports three content-review findings: a
+time-bounded Midnight Blizzard source conflict, a thin two-source entry, and
+a Gemini name-coverage gap.
+These are evidence-quality review items, not broken source references or a
+failed build. The hosted MCP advertises `initial_context`,
 `knowledge_base_search`, and `knowledge_base_read`. A live read-only check
 successfully retrieved RansomHub and other ransomware-related records from the
 Knowledge Base.
@@ -422,8 +426,8 @@ Knowledge Base.
 Before publishing, verify these Path One requirements:
 
 - the Knowledge Base contains the structured Cyber Autopsy content
-- the initial Knowledge Base build uses a curated 150-document slice of the
-  457-document production dataset; the current source limit is 5,000
+- the Knowledge Base is built from 46 current Sanity sources while the
+  underlying 457-document production dataset remains intact
 - the hosted Context MCP endpoint is reachable with `npm run sanity:context:check`
 - the agent session shows a real query through that endpoint
 - the repository and this post link to the same implementation
