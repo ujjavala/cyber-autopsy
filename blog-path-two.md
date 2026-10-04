@@ -160,9 +160,12 @@ The build evolved through these corrections:
 7. Ran the full Python suite, Sanity import validation, Studio build, syntax
    checks, browser scenarios, and browser console-error checks.
 
-The final verification included 229 Python tests, a Sanity inventory of 445
-imported documents, live CASE-001 and CASE-004 investigations, evidence
-provenance checks, cutoff checks, and zero browser console errors.
+The final verification included 229 Python tests, a Sanity inventory of 457
+production documents, live CASE-001 and CASE-004 investigations, evidence
+provenance checks, cutoff checks, and zero browser console errors. The hosted
+Sanity Context Knowledge Base was also created and checked through its
+read-only MCP tools; that hosted integration is the Path One capability, while
+this post focuses on the strange forensic product and its build process.
 
 ## How I Used Sanity
 
@@ -420,8 +423,10 @@ node scripts/sanity-seed.mjs --dry-run
 npm run sanity:seed
 ```
 
-The current Sanity dataset contains 445 imported Cyber Autopsy documents in
-production, plus 12 existing documents in the project.
+The current Sanity production dataset contains 457 documents: 445 imported
+Cyber Autopsy documents plus 12 existing project documents. A curated
+150-document source from this dataset is currently indexed in the hosted
+Context Knowledge Base.
 
 ### Context queries and agent behavior
 
@@ -463,11 +468,15 @@ API key in this repository.
 Project ID: 41l9o4xn
 Dataset: production
 Organization ID: oqf9m6vy6
+Knowledge Base ID: kbZHPSeMHnZt
+Hosted Studio: https://cyber-autopsy-ujjavala.sanity.studio/
 ```
 
 The public Sanity project details are intentionally included so the structured
-content model can be inspected. The server-side `SANITY_API_TOKEN` stays in
-`.env`, is ignored by Git, and is never sent to the browser.
+content model can be inspected. The hosted Studio is deployed from the Sanity
+Studio schema, and the Context Knowledge Base is built from a curated source
+of the production dataset. The server-side tokens stay in `.env`, are ignored
+by Git, and are never sent to the browser.
 
 ## Agent Session
 
@@ -476,6 +485,13 @@ The local agent is available through the MCP server:
 ```sh
 npm run agent:mcp
 ```
+
+The project also has a hosted Sanity Context MCP endpoint for agents that can
+connect to MCP. It is the read-only retrieval path used for the Path One
+integration and exposes the Knowledge Base through `initial_context`,
+`knowledge_base_search`, and `knowledge_base_read`. The endpoint URL is kept
+in the repository's environment configuration rather than hard-coded into the
+application, and no token is included in this post.
 
 The browser UI uses the same investigation context and exposes the workflow in
 a more approachable way:

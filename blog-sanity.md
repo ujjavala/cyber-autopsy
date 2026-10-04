@@ -351,8 +351,10 @@ node scripts/sanity-seed.mjs --dry-run
 npm run sanity:seed
 ```
 
-The current Sanity dataset contains 445 imported Cyber Autopsy documents in
-production, plus 12 existing documents in the project.
+The current Sanity production dataset contains 457 documents: 445 imported
+Cyber Autopsy documents plus 12 existing project documents. The hosted Context
+Knowledge Base currently indexes a curated 150-document source from that
+dataset; the remaining corpus is available for a later reviewed expansion.
 
 ### Context queries and agent behavior
 
@@ -395,17 +397,27 @@ Project ID: 41l9o4xn
 Dataset: production
 Organization ID: oqf9m6vy6
 Knowledge Base ID: kbZHPSeMHnZt
+Hosted Studio: https://cyber-autopsy-ujjavala.sanity.studio/
+Context MCP endpoint: https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/cyber-autopsy-context
 ```
 
 The project details identify the Sanity project and dataset used by the
 Knowledge Base. Server-side tokens stay in `.env`, are ignored by Git, and are
 never published in this post.
 
+The Knowledge Base build completed and is in Sanity's `review` state with two
+Dashboard review issues. The content is queryable through the hosted endpoint;
+the review issues should be checked in the Dashboard before treating the build
+as fully approved. The hosted MCP advertises `initial_context`,
+`knowledge_base_search`, and `knowledge_base_read`. A live read-only check
+successfully retrieved RansomHub and other ransomware-related records from the
+Knowledge Base.
+
 Before publishing, verify these Path One requirements:
 
 - the Knowledge Base contains the structured Cyber Autopsy content
 - the initial Knowledge Base build uses a curated 150-document slice of the
-  production dataset, within the current beta indexing limit
+  457-document production dataset; the current source limit is 5,000
 - the hosted Context MCP endpoint is reachable with `npm run sanity:context:check`
 - the agent session shows a real query through that endpoint
 - the repository and this post link to the same implementation
@@ -425,6 +437,13 @@ relationships rather than a keyword lookup. The strongest demonstration is
 the attack-chain question for `CASE-001`, followed by the `CASE-004` day-one
 cutoff and a contradictory-claims question. Do not include either token in a
 transcript or screenshot.
+
+I also verified the endpoint from a native Codex session in read-only mode:
+Codex loaded the Knowledge Base outline and called `knowledge_base_search` and
+`knowledge_base_read`. The session reached the real Sanity content and was
+stopped by the Codex account usage limit before it could produce a final
+narrative, so it should be described as a tool-call transcript, not as a
+completed answer. It has not been uploaded to DEV yet.
 
 The browser UI uses the same investigation context and exposes the workflow in
 a more approachable way:
