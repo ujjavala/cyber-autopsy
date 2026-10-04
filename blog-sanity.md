@@ -394,6 +394,7 @@ API key in this repository.
 Project ID: 41l9o4xn
 Dataset: production
 Organization ID: oqf9m6vy6
+Knowledge Base ID: kbZHPSeMHnZt
 ```
 
 The project details identify the Sanity project and dataset used by the
@@ -403,6 +404,8 @@ never published in this post.
 Before publishing, verify these Path One requirements:
 
 - the Knowledge Base contains the structured Cyber Autopsy content
+- the initial Knowledge Base build uses a curated 150-document slice of the
+  production dataset, within the current beta indexing limit
 - the hosted Context MCP endpoint is reachable with `npm run sanity:context:check`
 - the agent session shows a real query through that endpoint
 - the repository and this post link to the same implementation

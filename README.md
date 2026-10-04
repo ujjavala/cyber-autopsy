@@ -81,6 +81,11 @@ that endpoint in the agent session submitted with `blog-sanity.md`.
 See [Sanity Context MCP](https://www.sanity.io/docs/ai/sanity-context-mcp) for
 the official endpoint and permission model.
 
+The initial Knowledge Base created for this project is `kbZHPSeMHnZt`. Its
+source is a curated 150-document slice of the 457-document production dataset,
+selected to stay within the current beta indexing limit while retaining the
+incident, source, evidence, event, relationship, claim, and case types.
+
 Run the complete local verification suite:
 
 ```sh
