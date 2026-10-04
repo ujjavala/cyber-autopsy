@@ -302,6 +302,34 @@ configured against the hosted Context endpoint; the local adapter is a
 fallback for local demos and tests. The agent can therefore reason over
 retrieved evidence without receiving unrestricted access to the whole dataset.
 
+#### 10. Functions, Blueprints, and Agent Actions
+
+The project now uses Sanity's native automation layer for content quality
+control. A `reviewTask` document type gives the Studio a durable queue for
+missing sources, missing evidence, broken graph links, temporal review, and
+conflict review. The custom Studio structure puts `Review queue` at the top and
+shows open and in-review tasks first.
+
+The Blueprint in `studio-cyber-autopsy/sanity.blueprint.ts` provisions the
+`cyber-autopsy-review-automation` Stack, a project-scoped robot token, and the
+`review-queue-on-content-change` document Function. It watches published
+evidence, events, relationships, and claims. When an expected link is missing,
+the Function creates a deduplicated `reviewTask` with a severity, explanation,
+suggested action, and reference to the affected document. It does not rewrite
+the incident graph, decide attribution, or publish a conclusion.
+
+Agent Actions are used as a separate, draft-only reviewer assist. The helper in
+`studio-cyber-autopsy/scripts/draft-review-agent-action.mjs` asks Sanity's
+schema-aware Generate action to draft concise reviewer notes for one task. It
+requires the deployed schema ID and a server-side write token, targets only
+`reviewerNotes`, and leaves the task status, severity, and final decision to a
+human reviewer. Sanity's default draft behavior is deliberately preserved.
+
+The Function and robot token are deployed through Blueprint rather than hidden
+in the web app. This keeps write credentials server-side and makes the
+automation inspectable in the Sanity project. Both remote deployment operations
+completed successfully.
+
 ### Content model
 
 Sanity stores seven document types:
@@ -407,6 +435,8 @@ Organization ID: oqf9m6vy6
 Knowledge Base ID: kbZHPSeMHnZt
 Hosted Studio: https://cyber-autopsy-ujjavala.sanity.studio/
 Context MCP endpoint: https://api.sanity.io/v1/context/organizations/oqf9m6vy6/mcp/cyber-autopsy-context
+Blueprint Stack: cyber-autopsy-review-automation (ST-6kxszxpvyw)
+Deployed Function: review-queue-on-content-change
 ```
 
 The project details identify the Sanity project and dataset used by the
@@ -429,6 +459,7 @@ Before publishing, verify these Path One requirements:
 - the Knowledge Base is built from 46 current Sanity sources while the
   underlying 457-document production dataset remains intact
 - the hosted Context MCP endpoint is reachable with `npm run sanity:context:check`
+- the Blueprint-deployed review Function and Studio Review queue are available
 - the agent session shows a real query through that endpoint
 - the repository and this post link to the same implementation
 - the DEV post includes the `sanitychallenge` tag

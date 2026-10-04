@@ -173,6 +173,20 @@ Sanity Context Knowledge Base was also created and checked through its
 read-only MCP tools; that hosted integration is the Path One capability, while
 this post focuses on the strange forensic product and its build process.
 
+The Sanity layer also now includes a native review workflow. The Studio schema
+has a `reviewTask` document type, and the custom Structure menu exposes an open
+Review queue for unresolved evidence-quality work. A Blueprint deployed the
+`cyber-autopsy-review-automation` Stack with a project-scoped robot token and a
+`review-queue-on-content-change` Function. It checks published evidence,
+events, relationships, and claims for missing source/evidence links and creates
+deduplicated tasks without changing forensic verdicts.
+
+The repository also includes a draft-only Agent Action helper. Sanity's
+schema-aware Generate action can draft reviewer notes for a selected task, but
+it cannot publish the task, change its severity, or decide attribution. That
+separation lets the build use Sanity automation while keeping the investigator
+in control of the final interpretation.
+
 ### Sanity integration in the build
 
 #### How Sanity helped
@@ -476,6 +490,8 @@ Dataset: production
 Organization ID: oqf9m6vy6
 Knowledge Base ID: kbZHPSeMHnZt
 Hosted Studio: https://cyber-autopsy-ujjavala.sanity.studio/
+Blueprint Stack: cyber-autopsy-review-automation (ST-6kxszxpvyw)
+Deployed Function: review-queue-on-content-change
 ```
 
 The public Sanity project details are intentionally included so the structured
