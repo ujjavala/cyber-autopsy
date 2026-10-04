@@ -59,9 +59,7 @@ reasoning boundaries around each conclusion.
 
 The deployed demo is available at [https://cyber-autopsy.vercel.app](https://cyber-autopsy.vercel.app).
 It serves the forensic UI and the Sanity-backed `/api/cases` and
-`/api/investigate` routes. The Vercel project currently has deployment
-protection enabled; the URL becomes judge-accessible after that account-level
-setting is disabled.
+`/api/investigate` routes and is publicly reachable for the competition demo.
 
 Run the project locally when you want to inspect or modify it:
 
